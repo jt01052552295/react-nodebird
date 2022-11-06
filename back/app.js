@@ -24,14 +24,27 @@ db.sequelize
   .catch(console.error);
 passportConfig();
 
-app.use(morgan("dev"));
-// CORS
-app.use(
-  cors({
-    origin: "http://localhost:3060", // credentials : true 일때는 주소를 지정해줘야 한다. ( true 해도 됨. * 안됨.)
-    credentials: true, // 쿠키도 같이 전달된다.
-  })
-);
+if (process.env.NODE_ENV === "production") {
+  app.use(morgan("combined"));
+  app.use(hpp());
+  app.use(helmet({ contentSecurityPolicy: false }));
+  // CORS
+  app.use(
+    cors({
+      origin: "nodebird.com",
+      credentials: true, // 쿠키도 같이 전달된다.
+    })
+  );
+} else {
+  app.use(morgan("dev"));
+  app.use(
+    cors({
+      origin: true, // credentials : true 일때는 주소를 지정해줘야 한다. ( true 해도 됨. * 안됨.)
+      credentials: true,
+    })
+  );
+}
+
 // 프론트에서 이미지에 접근할 수 있도록 {url}/uploads 경로로 만들어준다.
 app.use("/", express.static(path.join(__dirname, "uploads")));
 // 프론트에서보낸 json 데이터, form 데이터를 req.body에 넣어준다.
