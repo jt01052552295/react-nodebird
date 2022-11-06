@@ -10,6 +10,7 @@ import wrapper from "../../store/configureStore";
 import PostCard from "../../components/PostCard";
 import AppLayout from "../../components/AppLayout";
 import { LOAD_MY_INFO_REQUEST } from "../../reducers/user";
+import { backUrl } from "../../config/config";
 
 const Post = () => {
   const { singlePost } = useSelector((state) => state.post);
@@ -38,10 +39,10 @@ const Post = () => {
           content={
             singlePost.Images[0]
               ? singlePost.Images[0].src
-              : "http://localhost:3060/favicon.ico"
+              : backUrl + "/favicon.ico"
           }
         />
-        <meta property="og:url" content={`http://localhost:3060/post/${id}`} />
+        <meta property="og:url" content={`${backUrl}/post/${id}`} />
       </Head>
       <PostCard post={singlePost} />
     </AppLayout>
