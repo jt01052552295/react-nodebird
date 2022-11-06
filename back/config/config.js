@@ -3,24 +3,24 @@ dotenv.config();
 
 module.exports = {
   development: {
-    username: "videoclass",
+    username: "root",
     password: process.env.DB_PASSWORD,
-    database: "videoclass",
-    host: "videoclass.cafe24.com",
+    database: "react-nodebird",
+    host: "127.0.0.1",
     dialect: "mysql",
   },
   test: {
-    username: "videoclass",
+    username: "root",
     password: process.env.DB_PASSWORD,
-    database: "videoclass",
-    host: "videoclass.cafe24.com",
+    database: "react-nodebird",
+    host: "127.0.0.1",
     dialect: "mysql",
   },
   production: {
-    username: "videoclass",
+    username: "root",
     password: process.env.DB_PASSWORD,
-    database: "videoclass",
-    host: "videoclass.cafe24.com",
+    database: "react-nodebird",
+    host: "127.0.0.1",
     dialect: "mysql",
   },
 };
